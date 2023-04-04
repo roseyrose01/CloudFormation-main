@@ -1,0 +1,39 @@
+# This is a hands-on task to create the cloudformation stack with
+# 2 EC2 instances in total & one s3 bucket
+# Webserver with 8gb EBS
+# Appserver with 10gb EBS
+# One S3 bucket to store invoice pdf files
+---
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: "template to create EC2 web and app server, s3 bucket"
+Parameters:
+    Type: DataType
+    ParameterProperty: value
+
+Resources:
+  webserver:
+    MyEC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+        ImageId: "use that of the specified region"
+        InstanceType" : "t2.micro"
+         KeyName: "keypair"
+         BlockDeviceMappings" :
+           - DeviceName: /dev/xvda
+               Ebs:
+                 VolumeSize: 8
+                 "DeleteOnTermination" : "true"
+
+    appserver:
+      MyEC2Instance:
+        Type: AWS::EC2::Instance
+        Properties:
+          ImageId: "use that of the specified region"
+          InstanceType": "t2.micro"
+            KeyName: "keypair"
+            BlockDeviceMappings":
+              - DeviceName: /dev/xvda
+                  Ebs:
+                    VolumeSize: 10
+                    "DeleteOnTermination": "true"
